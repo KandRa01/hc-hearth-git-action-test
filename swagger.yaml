@@ -1,0 +1,760 @@
+openapi: 3.0.1
+info:
+  description: |+
+    This is LexisNexis (LN) Risk Solutions FHIR CLICQ API. You can use this API to access different payers' FHIR servers.
+
+    <h2>Authorization</h2>
+    TO BE COMPLETED:
+    
+    All requests t cxn header: request header <b>"Authorization"</b> set to a valid access_token issued by <b>the Payer</b> (e.g. <code>Authorization: Bearer --access_token--</code>).</li>
+    <li>LN authorization header: request header <b>"X-LN-Authorization"</b> set to a valid access_token issued by <b>LN</b> (e.g. <code>X-LN-Authorization: Bearer --access_token--</code>).</li>
+    </ul>
+
+    <b>The LN access token</b> can be requested from <a href="https://apihealthcare.lexisnexisrisk.com/lnhcapiauth/authenticatxxxxxxxxxxxxxxxxxxxxxxxxeUser">https://apihealthcare.lexisnexisrisk.com/lnhcapiauth/authenticateUser</a> by providing the following parameters as x-www-form-urlencoded content within the request:
+    <ul>
+      <li>grant_type: client_credentials</li>
+      <li>client_id: As given by LN</li>
+      <li>client_secret: As given by LN</li>
+    </ul>
+
+    Please see <a href="https://www.example.com/oauth2-servers/access-tokens/client-credentials/">https://www.example.com/oauth2-servers/access-tokens/client-credentials/</a> for further information on how to request an access token.
+  title: LN CLICQ API
+  contact:
+    email: robert.karp@lexisnexisrisk.com
+    name: Robert Karp
+  version: 1.0.0
+
+servers:
+  - url: http://hapi.fhir.org/baseR4
+    description: Prod LN FHIR Proxy Server
+  - url: http://hapi.fhir.org/baseR4
+    description: UAT LN FHIR Proxy Server
+tags:
+  - name: Patient
+    description: The Patient FHIR resource type
+    externalDocs:
+      description: Find out more about FHIR Patient resource
+      url: "https://www.hl7.org/fhir/patient.html"
+  - name: Other Resources
+    description: All FHIR other resources.
+    externalDocs:
+      description: FHIR resource list
+      url: "https://www.hl7.org/fhir/resourcelist.html"
+
+paths:
+  '/{payerId}/Patient':
+    get:
+      tags:
+        - Patient
+      summary: 'read-instance: Read resources instance by query params'
+      parameters:
+        - $ref: '#/components/parameters/payerId'
+        - name: queryparams
+          in: query
+          description: Accepts all query params
+          required: true
+          schema:
+            type: object
+            additionalProperties:
+              type: object
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FHIR-JSON-RESOURCE'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/404-FHIR-OPERATION-OUTCOME'
+  '/{payerId}/AllergyIntolerance':
+    get:
+      tags:
+        - Other Resources
+      summary: 'read-instance: Read resources instance by query params'
+      parameters:
+        - $ref: '#/components/parameters/payerId'
+        - name: queryparams
+          in: query
+          description: Accepts all query params
+          required: true
+          schema:
+            type: object
+            additionalProperties:
+              type: object
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FHIR-JSON-RESOURCE'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/404-FHIR-OPERATION-OUTCOME'
+  '/{payerId}/CarePlan':
+    get:
+      tags:
+        - Other Resources
+      summary: 'read-instance: Read resources instance by query params'
+      parameters:
+        - $ref: '#/components/parameters/payerId'
+        - name: queryparams
+          in: query
+          description: Accepts all query params
+          required: true
+          schema:
+            type: object
+            additionalProperties:
+              type: object
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FHIR-JSON-RESOURCE'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/404-FHIR-OPERATION-OUTCOME'
+  '/{payerId}/CareTeam':
+    get:
+      tags:
+        - Other Resources
+      summary: 'read-instance: Read resources instance by query params'
+      parameters:
+        - $ref: '#/components/parameters/payerId'
+        - name: queryparams
+          in: query
+          description: Accepts all query params
+          required: true
+          schema:
+            type: object
+            additionalProperties:
+              type: object
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FHIR-JSON-RESOURCE'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/404-FHIR-OPERATION-OUTCOME'
+  '/{payerId}/Condition':
+    get:
+      tags:
+        - Other Resources
+      summary: 'read-instance: Read resources instance by query params'
+      parameters:
+        - $ref: '#/components/parameters/payerId'
+        - name: queryparams
+          in: query
+          description: Accepts all query params
+          required: true
+          schema:
+            type: object
+            additionalProperties:
+              type: object
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FHIR-JSON-RESOURCE'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/404-FHIR-OPERATION-OUTCOME'
+  '/{payerId}/Coverage':
+    get:
+      tags:
+        - Other Resources
+      summary: 'read-instance: Read resources instance by query params'
+      parameters:
+        - $ref: '#/components/parameters/payerId'
+        - name: queryparams
+          in: query
+          description: Accepts all query params
+          required: true
+          schema:
+            type: object
+            additionalProperties:
+              type: object
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FHIR-JSON-RESOURCE'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/404-FHIR-OPERATION-OUTCOME'
+  '/{payerId}/Device':
+    get:
+      tags:
+        - Other Resources
+      summary: 'read-instance: Read resources instance by query params'
+      parameters:
+        - $ref: '#/components/parameters/payerId'
+        - name: queryparams
+          in: query
+          description: Accepts all query params
+          required: true
+          schema:
+            type: object
+            additionalProperties:
+              type: object
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FHIR-JSON-RESOURCE'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/404-FHIR-OPERATION-OUTCOME'
+  '/{payerId}/DiagnosticReport':
+    get:
+      tags:
+        - Other Resources
+      summary: 'read-instance: Read resources instance by query params'
+      parameters:
+        - $ref: '#/components/parameters/payerId'
+        - name: queryparams
+          in: query
+          description: Accepts all query params
+          required: true
+          schema:
+            type: object
+            additionalProperties:
+              type: object
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FHIR-JSON-RESOURCE'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/404-FHIR-OPERATION-OUTCOME'
+  '/{payerId}/DocumentReference':
+    get:
+      tags:
+        - Other Resources
+      summary: 'read-instance: Read resources instance by query params'
+      parameters:
+        - $ref: '#/components/parameters/payerId'
+        - name: queryparams
+          in: query
+          description: Accepts all query params
+          required: true
+          schema:
+            type: object
+            additionalProperties:
+              type: object
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FHIR-JSON-RESOURCE'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/404-FHIR-OPERATION-OUTCOME'
+  '/{payerId}/Encounter':
+    get:
+      tags:
+        - Other Resources
+      summary: 'read-instance: Read resources instance by query params'
+      parameters:
+        - $ref: '#/components/parameters/payerId'
+        - name: queryparams
+          in: query
+          description: Accepts all query params
+          required: true
+          schema:
+            type: object
+            additionalProperties:
+              type: object
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FHIR-JSON-RESOURCE'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/404-FHIR-OPERATION-OUTCOME'
+  '/{payerId}/ExplanationOfBenefit':
+    get:
+      tags:
+        - Other Resources
+      summary: 'read-instance: Read resources instance by query params'
+      parameters:
+        - $ref: '#/components/parameters/payerId'
+        - name: queryparams
+          in: query
+          description: Accepts all query params
+          required: true
+          schema:
+            type: object
+            additionalProperties:
+              type: object
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FHIR-JSON-RESOURCE'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/404-FHIR-OPERATION-OUTCOME'
+  '/{payerId}/Goal':
+    get:
+      tags:
+        - Other Resources
+      summary: 'read-instance: Read resources instance by query params'
+      parameters:
+        - $ref: '#/components/parameters/payerId'
+        - name: queryparams
+          in: query
+          description: Accepts all query params
+          required: true
+          schema:
+            type: object
+            additionalProperties:
+              type: object
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FHIR-JSON-RESOURCE'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/404-FHIR-OPERATION-OUTCOME'
+  '/{payerId}/Immunization':
+    get:
+      tags:
+        - Other Resources
+      summary: 'read-instance: Read resources instance by query params'
+      parameters:
+        - $ref: '#/components/parameters/payerId'
+        - name: queryparams
+          in: query
+          description: Accepts all query params
+          required: true
+          schema:
+            type: object
+            additionalProperties:
+              type: object
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FHIR-JSON-RESOURCE'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/404-FHIR-OPERATION-OUTCOME'
+  '/{payerId}/Location':
+    get:
+      tags:
+        - Other Resources
+      summary: 'read-instance: Read resources instance by query params'
+      parameters:
+        - $ref: '#/components/parameters/payerId'
+        - name: queryparams
+          in: query
+          description: Accepts all query params
+          required: true
+          schema:
+            type: object
+            additionalProperties:
+              type: object
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FHIR-JSON-RESOURCE'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/404-FHIR-OPERATION-OUTCOME'
+  '/{payerId}/MedicationRequest':
+    get:
+      tags:
+        - Other Resources
+      summary: 'read-instance: Read resources instance by query params'
+      parameters:
+        - $ref: '#/components/parameters/payerId'
+        - name: queryparams
+          in: query
+          description: Accepts all query params
+          required: true
+          schema:
+            type: object
+            additionalProperties:
+              type: object
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FHIR-JSON-RESOURCE'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/404-FHIR-OPERATION-OUTCOME'
+  '/{payerId}/MetaData':
+    get:
+      tags:
+        - Other Resources
+      summary: 'read-instance: Read resources instance by query params'
+      parameters:
+        - $ref: '#/components/parameters/payerId'
+        - name: queryparams
+          in: query
+          description: Accepts all query params
+          required: true
+          schema:
+            type: object
+            additionalProperties:
+              type: object
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FHIR-JSON-RESOURCE'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/404-FHIR-OPERATION-OUTCOME'
+  '/{payerId}/Observation':
+    get:
+      tags:
+        - Other Resources
+      summary: 'read-instance: Read resources instance by query params'
+      parameters:
+        - $ref: '#/components/parameters/payerId'
+        - name: queryparams
+          in: query
+          description: Accepts all query params
+          required: true
+          schema:
+            type: object
+            additionalProperties:
+              type: object
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FHIR-JSON-RESOURCE'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/404-FHIR-OPERATION-OUTCOME'
+  '/{payerId}/Organization':
+    get:
+      tags:
+        - Other Resources
+      summary: 'read-instance: Read resources instance by query params'
+      parameters:
+        - $ref: '#/components/parameters/payerId'
+        - name: queryparams
+          in: query
+          description: Accepts all query params
+          required: true
+          schema:
+            type: object
+            additionalProperties:
+              type: object
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FHIR-JSON-RESOURCE'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/404-FHIR-OPERATION-OUTCOME'
+  '/{payerId}/Practitioner':
+    get:
+      tags:
+        - Other Resources
+      summary: 'read-instance: Read resources instance by query params'
+      parameters:
+        - $ref: '#/components/parameters/payerId'
+        - name: queryparams
+          in: query
+          description: Accepts all query params
+          required: true
+          schema:
+            type: object
+            additionalProperties:
+              type: object
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FHIR-JSON-RESOURCE'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/404-FHIR-OPERATION-OUTCOME'
+  '/{payerId}/PractitionerRole':
+    get:
+      tags:
+        - Other Resources
+      summary: 'read-instance: Read resources instance by query params'
+      parameters:
+        - $ref: '#/components/parameters/payerId'
+        - name: queryparams
+          in: query
+          description: Accepts all query params
+          required: true
+          schema:
+            type: object
+            additionalProperties:
+              type: object
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FHIR-JSON-RESOURCE'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/404-FHIR-OPERATION-OUTCOME'
+  '/{payerId}/Procedure':
+    get:
+      tags:
+        - Other Resources
+      summary: 'read-instance: Read resources instance by query params'
+      parameters:
+        - $ref: '#/components/parameters/payerId'
+        - name: queryparams
+          in: query
+          description: Accepts all query params
+          required: true
+          schema:
+            type: object
+            additionalProperties:
+              type: object
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FHIR-JSON-RESOURCE'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/404-FHIR-OPERATION-OUTCOME'
+  '/{payerId}/Provenance':
+    get:
+      tags:
+        - Other Resources
+      summary: 'read-instance: Read resources instance by query params'
+      parameters:
+        - $ref: '#/components/parameters/payerId'
+        - name: queryparams
+          in: query
+          description: Accepts all query params
+          required: true
+          schema:
+            type: object
+            additionalProperties:
+              type: object
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FHIR-JSON-RESOURCE'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/404-FHIR-OPERATION-OUTCOME'
+  '/{payerId}/RelatedPerson':
+    get:
+      tags:
+        - Other Resources
+      summary: 'read-instance: Read resources instance by query params'
+      parameters:
+        - $ref: '#/components/parameters/payerId'
+        - name: queryparams
+          in: query
+          description: Accepts all query params
+          required: true
+          schema:
+            type: object
+            additionalProperties:
+              type: object
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FHIR-JSON-RESOURCE'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/404-FHIR-OPERATION-OUTCOME'
+components:
+  parameters:
+    payerId:      # Can be referenced via '#/components/parameters/payerId'
+      name: payerId
+      in: path
+      description: The Payer you will to connect. Please check <a href="https://www.example.com/oauth2-servers/access-tokens/client-credentials/">https://www.example.com/oauth2-servers/access-tokens/client-credentials/</a> for supported payers.
+      required: true
+      schema:
+        minimum: 1
+        type: string
+        enum: [humana, cigna, healthfirst, aetna]
+      example: "Humana"
+  schemas:
+    FHIR-JSON-RESOURCE:
+      type: object
+      description: Refer to FHIR Resource list for detelied scheme <a href="https://www.hl7.org/fhir/resourcelist.html">https://www.hl7.org/fhir/resourcelist.html</a>
+      properties:
+        fhirResource:
+          type: object
+    404-FHIR-OPERATION-OUTCOME:
+      type: object
+      properties:
+        resourceType:
+          type: string
+          example: "OperationOutcome"
+        text:
+          type: object
+          properties:
+            status:
+              type: string
+              example: "generated"
+            div: 
+             type: string
+             example: "<div>not-supported</div>"
+        issue:
+          type: object
+          properties:
+            severity:
+              type: string
+              example: "error"
+            code: 
+             type: string
+             example: "not-supported"
+            diagnostics:
+              type: string
+              example: "not-supported"
+  securitySchemes:
+    lnhcapi_oauth2:
+      type: oauth2
+      description: This API uses oauth2 token authentication with the client credential grant flow.
+      flows:
+        clientCredentials:
+          tokenUrl: https://apihealthcare.lexisnexisrisk.com/lnhcapiauth/authenticateUser
+          scopes:
+            HCAR_IOP_ACCESS_GRANTED: Interop Access
+
+    LN_Authorization:
+      type: apiKey
+      description: "LN OAuth Token. Value needs to start with \"Bearer \"."
+      name: X-LN-Authorization
+      in: header
+
+    Payer_Authorization:
+      type: apiKey
+      description: "Client OAuth Token. Value needs to start with \"Bearer \"."
+      name: Authorization
+      in: header
+
+security:
+  - LN_Authorization: []
+    Payer_Authorization: []
+    lnhcapi_oauth2: [HCAR_IOP_ACCESS_GRANTED]
